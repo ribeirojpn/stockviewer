@@ -6,7 +6,7 @@ angular.module('stockviewer',['ngResource',"highcharts-ng"]).controller('ChartSt
               type: 'line'
           },
           xAxis: {
-            categories: []
+            type: 'datetime'
           }
       },
       series: [],
@@ -16,32 +16,27 @@ angular.module('stockviewer',['ngResource',"highcharts-ng"]).controller('ChartSt
       loading: false
   }
 
-  $http.get('https://www.quandl.com/api/v3/datasets/WIKI/GOOGL.json?order=asc&start_date=2015-01-01').success(function(stock){
-    var serie = {
-      name:'GOOGL',
-      data: []
-    }
+  $scope.stock = '';
 
-    for(var stock of stock.dataset.data){
-      $scope.highchartsNG.options.xAxis.categories.push(stock[0]);
-      serie.data.push(stock[4]);
-
-    }
-    $scope.highchartsNG.series.push(serie);
-  });
-
-  $http.get('https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?order=asc&start_date=2015-01-01').success(function(stock){
-    var serie = {
-      name:'AAPl',
-      data: []
-    }
-
-    for(var stock of stock.dataset.data){
-      if (!(stock[0] in $scope.highchartsNG.options.xAxis.categories)){
-        $scope.highchartsNG.options.xAxis.categories.push(stock[0]);
+  $scope.add = function() {
+    $http.get("https://www.quandl.com/api/v3/datasets/WIKI/" + $scope.stock + ".json?order=asc&start_date=2015-01-01").success(function(stock){
+      var serie = {
+        name:$scope.stock,
+        data: [],
       }
-      serie.data.push(stock[4]);
-    }
-    $scope.highchartsNG.series.push(serie);
-  });
+
+      for(var stock of stock.dataset.data){
+        var date = new Date(stock[0]);
+        var mili = date.getTime();
+
+        var dataStock =  [mili,stock[4]]
+
+        serie.data.push(dataStock);
+      }
+
+      $scope.highchartsNG.series.push(serie);
+    }).error(function(erro) {
+      console.error(erro);
+    });
+  }
 });
