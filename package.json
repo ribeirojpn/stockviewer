@@ -1,0 +1,20 @@
+{
+  "name": "stockviewer",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joao Paulo Ribeiro <jpnribeiro94@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-load": "^1.1.15",
+    "method-override": "^2.3.5",
+    "mongodb": "^2.0.43",
+    "mongoose": "^4.1.6"
+  }
+}

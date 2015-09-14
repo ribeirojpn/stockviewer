@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="stockviewer">
+  <head>
+    <meta charset="utf-8">
+    <title>Stock Viewer</title>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
+  <body ng-controller="ChartStock">
+    <div class="container">
+      <h1>Stock Viewer</h1>
+      <highchart id="chart1" config="highchartsNG"></highchart>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.src.js"></script>
+    <script src="vendor/highcharts-ng/dist/highcharts-ng.min.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
